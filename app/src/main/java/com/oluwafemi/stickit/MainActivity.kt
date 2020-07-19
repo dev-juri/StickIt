@@ -12,7 +12,7 @@ import com.oluwafemi.stickit.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,11 +20,12 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         //Creates a shared preference file
-        val sharedPref = getSharedPreferences(getString(R.string.file_key), Context.MODE_PRIVATE) ?: return
+        val sharedPref =
+            getSharedPreferences(getString(R.string.file_key), Context.MODE_PRIVATE) ?: return
 
         val presentNote = sharedPref.getString(getString(R.string.our_note), "")
-         //Check if there's anything in the shared preference
-        if(presentNote == null){
+        //Check if there's anything in the shared preference
+        if (presentNote == null) {
             //Create a value for the note
             with(sharedPref.edit()) {
                 putString(getString(R.string.our_note), "")
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Add a TextWatcher to the EditText
-        binding.stickyNote.addTextChangedListener(object: TextWatcher{
+        binding.stickyNote.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 //Update the sharedPref after text changes
                 with(sharedPref.edit()) {
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
                     apply()
                 }
             }
+
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 

@@ -3,10 +3,10 @@ package com.oluwafemi.stickit
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 
 class StickyNoteActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
@@ -27,10 +27,12 @@ class StickyNoteActivity : AppCompatActivity() {
             if(presentNote.isNullOrEmpty()){
                 with(sharedPref.edit()){
                     putString(getString(R.string.our_note), interStick)
+                    apply()
                 }
             } else {
                 with(sharedPref.edit()){
                     putString(getString(R.string.our_note), "$presentNote\n\n$interStick")
+                    apply()
                 }
             }
             Toast.makeText(this, "Clipped: $interStick", Toast.LENGTH_SHORT).show()
