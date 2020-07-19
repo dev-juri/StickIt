@@ -6,6 +6,10 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
 
+    buildFeatures {
+        dataBinding = true
+    }
+
     defaultConfig {
         applicationId "com.oluwafemi.stickit"
         minSdkVersion 16

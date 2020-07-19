@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">StickIt</string>
+    <string name="file_key">com.oluwafemi.stickit.STICKY_NOTE</string>
+    <string name="our_note">STICKY_NOTE</string>
 </resources>
