@@ -2,4 +2,6 @@
     <string name="app_name">StickIt</string>
     <string name="file_key">com.oluwafemi.stickit.STICKY_NOTE</string>
     <string name="our_note">STICKY_NOTE</string>
+    <string name="appwidget_text">Nothing is on your Sticky pad</string>
+    <string name="add_widget">Add widget</string>
 </resources>

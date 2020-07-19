@@ -50,7 +50,25 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        binding.stickyNote.setText(presentNote)
 
+    }
+
+    fun getData(){
+        //Creates a shared preference file
+        val sharedPref =
+            getSharedPreferences(getString(R.string.file_key), Context.MODE_PRIVATE) ?: return
+
+        val presentNote = sharedPref.getString(getString(R.string.our_note), "")
+        binding.stickyNote.setText(presentNote)
+    }
+
+    override fun onResume() {
+        getData()
+        super.onResume()
+    }
+
+    override fun onStart() {
+        getData()
+        super.onStart()
     }
 }

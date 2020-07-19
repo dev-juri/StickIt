@@ -14,28 +14,26 @@ class StickyNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 
-        val sharedPref = getSharedPreferences(getString(R.string.file_key), Context.MODE_PRIVATE) ?: return
+        val sharedPref =
+            getSharedPreferences(getString(R.string.file_key), Context.MODE_PRIVATE) ?: return
 
         val presentNote = sharedPref.getString(getString(R.string.our_note), "")
 
         //Check for the intent filter action
-        if (intent.action == Intent.ACTION_PROCESS_TEXT){
+        if (intent.action == Intent.ACTION_PROCESS_TEXT) {
 
             //Get the text processed
             val interStick = intent.getStringExtra(Intent.EXTRA_PROCESS_TEXT) ?: ""
 
-            if(presentNote.isNullOrEmpty()){
-                with(sharedPref.edit()){
-                    putString(getString(R.string.our_note), interStick)
-                    apply()
-                }
-            } else {
-                with(sharedPref.edit()){
-                    putString(getString(R.string.our_note), "$presentNote\n\n$interStick")
-                    apply()
-                }
+            with(sharedPref.edit()) {
+                putString(getString(R.string.our_note), "$presentNote\n\n$interStick")
+                apply()
+
+                Toast.makeText(this@StickyNoteActivity, "Text clipped to StickIt", Toast.LENGTH_SHORT).show()
             }
-            Toast.makeText(this, "Clipped: $interStick", Toast.LENGTH_SHORT).show()
+
+            //End the activity
+            finish()
         }
     }
 }
