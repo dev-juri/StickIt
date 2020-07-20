@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun getData(){
+    private fun getData(){
         //Creates a shared preference file
         val sharedPref =
             getSharedPreferences(getString(R.string.file_key), Context.MODE_PRIVATE) ?: return

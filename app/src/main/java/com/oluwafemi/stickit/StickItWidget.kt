@@ -37,7 +37,10 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int
 ) {
-    val widgetText = if (getSharedPref(context) == null) context.getString(R.string.appwidget_text) else getSharedPref(context)
+
+    val sharedPreferences = context.getSharedPreferences(context.getString(R.string.file_key), Context.MODE_PRIVATE)
+    val presentNote = sharedPreferences.getString(context.getString(R.string.our_note), "")
+    val widgetText = if (presentNote == "") context.getString(R.string.appwidget_text) else presentNote
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.stick_it_widget)
     views.setTextViewText(R.id.appwidget_text, widgetText)
@@ -51,9 +54,4 @@ internal fun updateAppWidget(
 private fun getPendingIntent(context: Context) : PendingIntent{
     val intent = Intent(context, MainActivity::class.java)
     return PendingIntent.getActivity(context, 200, intent, 0)
-}
-private fun getSharedPref(context: Context) : String? {
-    val sharedPreferences = context.getSharedPreferences(context.getString(R.string.file_key), Context.MODE_PRIVATE)
-    val presentNote = sharedPreferences.getString(context.getString(R.string.our_note), "")
-    return presentNote
 }
